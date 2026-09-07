@@ -96,13 +96,13 @@ export default function BirthdayExperience() {
     camera.position.set(0, 0, 18);
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-    const key1 = new THREE.PointLight(PALETTE.gold, 1.6, 140);
+    const key1 = new THREE.PointLight(PALETTE.gold, 1.0, 140);
     key1.position.set(14, 12, 10);
     scene.add(key1);
-    const key2 = new THREE.PointLight(PALETTE.coral, 1.2, 140);
+    const key2 = new THREE.PointLight(PALETTE.coral, 0.7, 140);
     key2.position.set(-14, -10, -20);
     scene.add(key2);
-    const key3 = new THREE.PointLight(PALETTE.teal, 1.0, 140);
+    const key3 = new THREE.PointLight(PALETTE.teal, 0.65, 140);
     key3.position.set(0, -6, -100);
     scene.add(key3);
 
@@ -613,13 +613,14 @@ export default function BirthdayExperience() {
         .bday-hover-btn { transition: transform 200ms ease; }
         .bday-hover-btn:hover { transform: scale(1.05); }
         .bday-blur { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+        @media (max-width: 639px) { .bday-navdots { display: none !important; } }
       `}</style>
       <div
         ref={mountRef}
         style={{
           position: "fixed", inset: 0, zIndex: 0,
           background:
-            "radial-gradient(1200px 900px at 20% 0%, rgba(232,99,122,0.15), transparent 60%), radial-gradient(1000px 800px at 100% 20%, rgba(47,158,143,0.12), transparent 55%), #22060D",
+            "radial-gradient(1200px 900px at 20% 0%, rgba(232,99,122,0.08), transparent 60%), radial-gradient(1000px 800px at 100% 20%, rgba(47,158,143,0.06), transparent 55%), #22060D",
         }}
       />
 
@@ -656,7 +657,7 @@ export default function BirthdayExperience() {
           position: "fixed",
           inset: 0,
           zIndex: 30,
-          background: "radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(8,2,4,0.68) 100%)",
+          background: "radial-gradient(ellipse at 50% 45%, transparent 40%, rgba(8,2,4,0.55) 100%)",
         }}
       />
 
@@ -707,12 +708,28 @@ export default function BirthdayExperience() {
 
       {/* CLOSING overlay */}
       <div
-        style={{ pointerEvents: "none", position: "fixed", inset: 0, zIndex: 20, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", padding: "0 24px 64px", textAlign: "center", transition: "opacity 300ms ease", opacity: op("closing") }}
+        style={{ pointerEvents: "none", position: "fixed", inset: 0, zIndex: 35, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-end", padding: "0 24px 64px", textAlign: "center", transition: "opacity 300ms ease", opacity: op("closing") }}
       >
-        <h2 style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: "clamp(1.8rem, 6vw, 3rem)" }}>
+        <h2
+          style={{
+            fontFamily: "'Fraunces', serif",
+            fontWeight: 700,
+            fontSize: "clamp(1.8rem, 6vw, 3rem)",
+            textShadow: "0 3px 18px rgba(0,0,0,0.55)",
+          }}
+        >
           Happy Birthday, <span style={{ fontStyle: "italic", color: c.gold }}>Shamitha.</span>
         </h2>
-        <p style={{ marginTop: 14, maxWidth: 320, color: c.creamDim }}>
+        <p
+          style={{
+            marginTop: 14,
+            maxWidth: 380,
+            color: "#241317",
+            fontWeight: 600,
+            lineHeight: 1.45,
+            textShadow: "0 2px 10px rgba(255,241,228,0.65)",
+          }}
+        >
           Tallest person on Earth. Smallest in height. Click the cake.
         </p>
         <button
