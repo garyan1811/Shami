@@ -85,7 +85,7 @@ export default function BirthdayExperience() {
     mount.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(PALETTE.maroonDeep, 0.016);
+    scene.fog = new THREE.FogExp2(PALETTE.maroonDeep, 0.006);
 
     const camera = new THREE.PerspectiveCamera(
       55,
@@ -134,6 +134,7 @@ export default function BirthdayExperience() {
       const mat = new THREE.SpriteMaterial({
         map: tex,
         transparent: true,
+        opacity: 0.10,
         blending: THREE.AdditiveBlending,
         depthWrite: false,
       });
@@ -342,15 +343,15 @@ export default function BirthdayExperience() {
     paperCanvas.height = 700;
     const pctx = paperCanvas.getContext("2d");
     const pg = pctx.createLinearGradient(0, 0, 0, 700);
-    pg.addColorStop(0, "#FBF1E4");
-    pg.addColorStop(1, "#F3E6D2");
+    pg.addColorStop(0, "#E6D2BD");
+    pg.addColorStop(1, "#CDB39D");
     pctx.fillStyle = pg;
     pctx.fillRect(0, 0, 900, 700);
-    pctx.fillStyle = "#E8637A";
+    pctx.fillStyle = "#7A2438";
     pctx.font = "italic bold 40px Georgia";
     pctx.textAlign = "left";
     pctx.fillText("okay, real talk for a second", 60, 90);
-    pctx.fillStyle = "#3A281E";
+    pctx.fillStyle = "#201116";
     pctx.font = "24px Georgia";
     const letterLines = [
       "You walk around acting tough. Rude, even, if people don't look",
@@ -367,7 +368,7 @@ export default function BirthdayExperience() {
     ];
     letterLines.forEach((line, i) => pctx.fillText(line, 60, 150 + i * 38));
     pctx.font = "italic 26px Georgia";
-    pctx.fillStyle = "#2F9E8F";
+    pctx.fillStyle = "#277A70";
     pctx.fillText("— the guy you can't get rid of", 60, 640);
     const paperTexture = new THREE.CanvasTexture(paperCanvas);
     const paperMesh = new THREE.Mesh(
@@ -612,7 +613,6 @@ export default function BirthdayExperience() {
         .bday-hover-btn { transition: transform 200ms ease; }
         .bday-hover-btn:hover { transform: scale(1.05); }
         .bday-blur { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
-        @media (max-width: 639px) { .bday-navdots { display: none !important; } }
       `}</style>
       <div
         ref={mountRef}
@@ -656,25 +656,9 @@ export default function BirthdayExperience() {
           position: "fixed",
           inset: 0,
           zIndex: 30,
-          background: "radial-gradient(ellipse at 50% 45%, transparent 40%, rgba(8,2,4,0.55) 100%)",
+          background: "radial-gradient(ellipse at 50% 45%, transparent 35%, rgba(8,2,4,0.68) 100%)",
         }}
       />
-
-      <div className="bday-navdots" style={{ position: "fixed", right: 20, top: "50%", zIndex: 40, transform: "translateY(-50%)", display: "flex", flexDirection: "column", gap: 12 }}>
-        {SECTIONS.map((s) => (
-          <button
-            key={s.key}
-            onClick={() => jumpTo(s.key)}
-            aria-label={s.key}
-            style={{
-              width: 10, height: 10, borderRadius: "50%", cursor: "pointer", transition: "all 200ms ease",
-              border: `1.5px solid ${active === s.key ? c.gold : c.creamDim}`,
-              background: active === s.key ? c.gold : "transparent",
-              transform: active === s.key ? "scale(1.3)" : "scale(1)",
-            }}
-          />
-        ))}
-      </div>
 
       {/* HERO overlay */}
       <div
